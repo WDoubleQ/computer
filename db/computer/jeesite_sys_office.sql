@@ -1,0 +1,65 @@
+create table sys_office
+(
+    id             varchar(64)      not null comment '编号'
+        primary key,
+    parent_id      varchar(64)      not null comment '父级编号',
+    parent_ids     varchar(2000)    not null comment '所有父级编号',
+    name           varchar(100)     not null comment '名称',
+    sort           decimal          not null comment '排序',
+    area_id        varchar(64)      not null comment '归属区域',
+    code           varchar(100)     null comment '区域编码',
+    type           char             not null comment '机构类型',
+    grade          char             not null comment '机构等级',
+    address        varchar(255)     null comment '联系地址',
+    zip_code       varchar(100)     null comment '邮政编码',
+    master         varchar(100)     null comment '负责人',
+    phone          varchar(200)     null comment '电话',
+    fax            varchar(200)     null comment '传真',
+    email          varchar(200)     null comment '邮箱',
+    USEABLE        varchar(64)      null comment '是否启用',
+    PRIMARY_PERSON varchar(64)      null comment '主负责人',
+    DEPUTY_PERSON  varchar(64)      null comment '副负责人',
+    create_by      varchar(64)      not null comment '创建者',
+    create_date    datetime         not null comment '创建时间',
+    update_by      varchar(64)      not null comment '更新者',
+    update_date    datetime         not null comment '更新时间',
+    remarks        varchar(255)     null comment '备注信息',
+    del_flag       char default '0' not null comment '删除标记'
+)
+    comment '机构表' charset = utf8;
+
+create index sys_office_del_flag
+    on sys_office (del_flag);
+
+create index sys_office_parent_id
+    on sys_office (parent_id);
+
+create index sys_office_type
+    on sys_office (type);
+
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('1', '0', '0,', '总公司', 10, '2', '100000', '1', '1', '', '', '', '', '', '', '1', '', '', '1', '2013-05-27 08:00:00', '1', '2020-04-20 14:03:28', '', '0');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('10', '7', '0,1,7,', '市场部', 30, '3', '200003', '2', '2', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('11', '7', '0,1,7,', '技术部', 40, '3', '200004', '2', '2', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('12', '7', '0,1,7,', '历城区分公司', 0, '4', '201000', '1', '3', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('13', '12', '0,1,7,12,', '公司领导', 10, '4', '201001', '2', '3', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('14', '12', '0,1,7,12,', '综合部', 20, '4', '201002', '2', '3', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('15', '12', '0,1,7,12,', '市场部', 30, '4', '201003', '2', '3', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('16', '12', '0,1,7,12,', '技术部', 40, '4', '201004', '2', '3', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('17', '7', '0,1,7,', '历下区分公司', 40, '5', '201010', '1', '3', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('18', '17', '0,1,7,17,', '公司领导', 10, '5', '201011', '2', '3', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('19', '17', '0,1,7,17,', '综合部', 20, '5', '201012', '2', '3', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('2', '1', '0,1,', '公司领导', 10, '2', '100001', '2', '1', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('20', '17', '0,1,7,17,', '市场部', 30, '5', '201013', '2', '3', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('21', '17', '0,1,7,17,', '技术部', 40, '5', '201014', '2', '3', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('22', '7', '0,1,7,', '高新区分公司', 50, '6', '201010', '1', '3', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('23', '22', '0,1,7,22,', '公司领导', 10, '6', '201011', '2', '3', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('24', '22', '0,1,7,22,', '综合部', 20, '6', '201012', '2', '3', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('25', '22', '0,1,7,22,', '市场部', 30, '6', '201013', '2', '3', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('26', '22', '0,1,7,22,', '技术部', 40, '6', '201014', '2', '3', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('3', '1', '0,1,', '综合部', 20, '2', '100002', '2', '1', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('4', '1', '0,1,', '市场部', 30, '2', '100003', '2', '1', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('5', '1', '0,1,', '技术部', 40, '2', '100004', '2', '1', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('6', '1', '0,1,', '研发部', 50, '2', '100005', '2', '1', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('7', '1', '0,1,', '济南市分公司', 20, '3', '200000', '1', '2', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('8', '7', '0,1,7,', '公司领导', 10, '3', '200001', '2', '2', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
+INSERT INTO jeesite.sys_office (id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code, master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date, update_by, update_date, remarks, del_flag) VALUES ('9', '7', '0,1,7,', '综合部', 20, '3', '200002', '2', '2', null, null, null, null, null, null, '1', null, null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '1');
