@@ -25,14 +25,14 @@
                     <c:if test="${not empty list}">
                         <c:forEach items="${list}" var="computer" varStatus="status">
                             <c:if test="${(status.index+1) mod 3 !=1}">
-                                <div class="col-4">
-                                    <img src="${computer.image}" class="img-thumbnail">
+                                <div class="col-4 border" id="${computer.image}" onclick="clickImage('${computer.id}')">
+                                    <img src="${fns:getDictValue('ip', 'ip', 'http://127.0.0.1:8080')}/${computer.image}" class="img-fluid rounded">
                                 </div>
                             </c:if>
                             <c:if test="${(status.index+1) mod 3==1}">
                                 <div class="row p-5">
-                                    <div class="col-4">
-                                        <img src="${computer.image}" class="img-thumbnail">
+                                    <div class="col-4 border" id="${computer.image}" onclick="clickImage('${computer.id}')">
+                                        <img src="${fns:getDictValue('ip', 'ip', 'http://127.0.0.1:8080')}/${computer.image}" class="img-fluid rounded">
                                     </div>
                                 </div>
                             </c:if>
@@ -40,8 +40,22 @@
                     </c:if>
                 </div>
 
+            <form>
+                <div class="row mt-5">
+                    <div class="col-4 offset-8">
+                        <button type="submit" class="btn btn-primary">下一步</button>
+                    </div>
+
+                </div>
+            </form>
+
         </div>
     </div>
 </div>
 </body>
+<script>
+    function clickImage(id) {
+        alert(id);
+    }
+</script>
 </html>

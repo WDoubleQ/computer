@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container">
-    <div style="height: 500px;background-color: #0ab1cb">
+    <div style="height: 600px;background-color: #0ab1cb">
         <div style="text-align: right">
             <button type="button" class="btn btn-secondary">首页</button>
             <button type="button" class="btn btn-secondary">背后的故事</button>

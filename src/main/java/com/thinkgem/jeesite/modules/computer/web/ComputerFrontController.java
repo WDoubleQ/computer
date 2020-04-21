@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -59,17 +60,14 @@ public class ComputerFrontController extends BaseController{
 	@RequestMapping(value = "computer/fourth")
 	public String toFourth(Computer computer, HttpServletRequest request, HttpServletResponse response, Model model){
 		List<Computer> list = computerService.findList(computer);
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i).getImage().replace("|","");
-		}
 		model.addAttribute("list", list);
+		HttpSession session = request.getSession();
+		session.setAttribute("result",list);
 		return "modules/computer/fourth";
 	}
 
-	public String findAll(Computer computer, HttpServletRequest request, HttpServletResponse response, Model model){
-		List<Computer> list = computerService.findList(computer);
-		model.addAttribute("list", list);
-		return "modules/computer/fourth";
+	public String toFinally(){
+		return "";
 	}
 	
 }
