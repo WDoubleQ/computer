@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.computer.dao.ComputerDao">
+    
+	<sql id="computerColumns">
+		a.id AS "id",
+		a.rec_rate AS "recRate",
+		a.brand AS "brand",
+		a.model AS "model",
+		a.flash_point AS "flashPoint",
+		a.used AS "used",
+		a.upgrade AS "upgrade",
+		a.price AS "price",
+		a.play_attr AS "playAttr",
+		a.cpu AS "cpu",
+		a.screen AS "screen",
+		a.gpu AS "gpu",
+		a.hard_disk AS "hardDisk",
+		a.ram AS "ram",
+		a.port AS "port",
+		a.image AS "image",
+		a.cpu_attr AS "cpuAttr",
+		a.screen_attr AS "screenAttr"
+	</sql>
+	
+	<sql id="computerJoins">
+	</sql>
+    
+	<select id="get" resultType="Computer">
+		SELECT 
+			<include refid="computerColumns"/>
+		FROM com_info a
+		<include refid="computerJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="Computer">
+		SELECT 
+			<include refid="computerColumns"/>
+		FROM com_info a
+		<include refid="computerJoins"/>
+		<where>
+			
+			<if test="recRate != null and recRate != ''">
+				AND a.rec_rate = #{recRate}
+			</if>
+			<if test="brand != null and brand != ''">
+				AND a.brand = #{brand}
+			</if>
+			<if test="model != null and model != ''">
+				AND a.model = #{model}
+			</if>
+			<if test="flashPoint != null and flashPoint != ''">
+				AND a.flash_point = #{flashPoint}
+			</if>
+			<if test="used != null and used != ''">
+				AND a.used = #{used}
+			</if>
+			<if test="upgrade != null and upgrade != ''">
+				AND a.upgrade = #{upgrade}
+			</if>
+			<if test="price != null and price != ''">
+				AND a.price &lt;= #{price}
+			</if>
+			<if test="playAttr != null and playAttr != ''">
+				AND a.play_attr = #{playAttr}
+			</if>
+			<if test="cpu != null and cpu != ''">
+				AND a.cpu = #{cpu}
+			</if>
+			<if test="screen != null and screen != ''">
+				AND a.screen = #{screen}
+			</if>
+			<if test="gpu != null and gpu != ''">
+				AND a.gpu = #{gpu}
+			</if>
+			<if test="hardDisk != null and hardDisk != ''">
+				AND a.hard_disk = #{hardDisk}
+			</if>
+			<if test="ram != null and ram != ''">
+				AND a.ram = #{ram}
+			</if>
+			<if test="port != null and port != ''">
+				AND a.port = #{port}
+			</if>
+			<if test="image != null and image != ''">
+				AND a.image = #{image}
+			</if>
+			<if test="cpuAttr != null and cpuAttr != ''">
+				AND a.cpu_attr = #{cpuAttr}
+			</if>
+			<if test="screenAttr != null and screenAttr != ''">
+				AND a.screen_attr = #{screenAttr}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="Computer">
+		SELECT 
+			<include refid="computerColumns"/>
+		FROM com_info a
+		<include refid="computerJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO com_info(
+			id,
+			rec_rate,
+			brand,
+			model,
+			flash_point,
+			used,
+			upgrade,
+			price,
+			play_attr,
+			cpu,
+			screen,
+			gpu,
+			hard_disk,
+			ram,
+			port,
+			image,
+			cpu_attr,
+			screen_attr
+		) VALUES (
+			#{id},
+			#{recRate},
+			#{brand},
+			#{model},
+			#{flashPoint},
+			#{used},
+			#{upgrade},
+			#{price},
+			#{playAttr},
+			#{cpu},
+			#{screen},
+			#{gpu},
+			#{hardDisk},
+			#{ram},
+			#{port},
+			#{image},
+			#{cpuAttr},
+			#{screenAttr}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE com_info SET 	
+			rec_rate = #{recRate},
+			brand = #{brand},
+			model = #{model},
+			flash_point = #{flashPoint},
+			used = #{used},
+			upgrade = #{upgrade},
+			price = #{price},
+			play_attr = #{playAttr},
+			cpu = #{cpu},
+			screen = #{screen},
+			gpu = #{gpu},
+			hard_disk = #{hardDisk},
+			ram = #{ram},
+			port = #{port},
+			image = #{image},
+			cpu_attr = #{cpuAttr},
+			screen_attr = #{screenAttr}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM com_info
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
