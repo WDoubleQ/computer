@@ -34,6 +34,11 @@ public class ComputerFrontController extends BaseController{
 	@Autowired
 	private ComputerService computerService;
 
+	@RequestMapping(value = "ali")
+	public String ali(){
+		return "modules/computer/ali";
+	}
+
 	/**
 	 * 网站首页
 	 */

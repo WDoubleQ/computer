@@ -12,7 +12,7 @@
 <div class="container">
     <div style="height: 500px;background-color: #0ab1cb">
         <div style="text-align: right">
-            <button type="button" class="btn btn-secondary">首页</button>
+            <a href="${pageContext.request.contextPath}${fns:getFrontPath()}/ali" class="btn btn-secondary">首页</a>
             <button type="button" class="btn btn-secondary">背后的故事</button>
             <button type="button" class="btn btn-secondary">联系我们</button>
         </div>
