@@ -14,10 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,7 +48,9 @@ public class ComputerFrontController extends BaseController{
 
 	@RequestMapping(value = "computer/second")
 	public String toSecond(Model model,@RequestParam("money")String money){
+		//将金额传递到第二个页面
 		model.addAttribute("money", money);
+		//跳转至第二个界面
 		return "modules/computer/second";
 	}
 
@@ -66,8 +70,30 @@ public class ComputerFrontController extends BaseController{
 		return "modules/computer/fourth";
 	}
 
-	public String toFinally(){
-		return "";
+	@RequestMapping(value = "computer/finally")
+	@ResponseBody
+	public String toFinally(String[] imgIds,HttpServletRequest request, HttpServletResponse response, Model model){
+		HttpSession session = request.getSession();
+		List<Computer> list = (List<Computer>) session.getAttribute("result");
+		List<Computer> result = new ArrayList<Computer>();
+		for (int i = 0; i < list.size(); i++) {
+			for (int j = 0; j < imgIds.length; j++) {
+				if(imgIds[j].equals(list.get(i).getId())){
+					result.add(list.get(i));
+				}
+			}
+		}
+		session.setAttribute("finallyList",result);
+		model.addAttribute("finallyList",list);
+		return "success";
+	}
+
+	@RequestMapping(value = "computer/finallyPage")
+	public String toFinallyPage(HttpServletRequest request, HttpServletResponse response, Model model){
+		HttpSession session = request.getSession();
+		List<Computer> list = (List<Computer>) session.getAttribute("finallyList");
+		model.addAttribute("finallyList",list);
+		return "modules/computer/finally";
 	}
 	
 }

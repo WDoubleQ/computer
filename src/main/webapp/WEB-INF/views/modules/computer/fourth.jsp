@@ -19,20 +19,20 @@
         <div class="p-5" style="margin-top: 50px;color: white;">
             <h1>选择2-4个中意的外观嘛！</h1>
         </div>
-        <div style="height: 300px">
+        <div>
 
-                <div class="row p-5">
+                <div class="row p-5" >
                     <c:if test="${not empty list}">
                         <c:forEach items="${list}" var="computer" varStatus="status">
                             <c:if test="${(status.index+1) mod 3 !=1}">
-                                <div class="col-4 border" id="${computer.image}" onclick="clickImage('${computer.id}')">
-                                    <img src="${fns:getDictValue('ip', 'ip', 'http://127.0.0.1:8080')}/${computer.image}" class="img-fluid rounded">
+                                <div class="col-4 p-5">
+                                    <img height="200" width="200" src="${fns:getDictValue('ip', 'ip', 'http://127.0.0.1:8080')}/${computer.image}" class="border" id="${computer.id}" onclick="clickImage('${computer.id}')">
                                 </div>
                             </c:if>
                             <c:if test="${(status.index+1) mod 3==1}">
                                 <div class="row p-5">
-                                    <div class="col-4 border" id="${computer.image}" onclick="clickImage('${computer.id}')">
-                                        <img src="${fns:getDictValue('ip', 'ip', 'http://127.0.0.1:8080')}/${computer.image}" class="img-fluid rounded">
+                                    <div class="col-4 p-5">
+                                        <img height="200" width="200" src="${fns:getDictValue('ip', 'ip', 'http://127.0.0.1:8080')}/${computer.image}" class="border" id="${computer.id}" onclick="clickImage('${computer.id}')">
                                     </div>
                                 </div>
                             </c:if>
@@ -43,7 +43,7 @@
             <form>
                 <div class="row mt-5">
                     <div class="col-4 offset-8">
-                        <button type="submit" class="btn btn-primary">下一步</button>
+                        <button type="button" onclick="next()" class="btn btn-primary">下一步</button>
                     </div>
 
                 </div>
@@ -55,7 +55,35 @@
 </body>
 <script>
     function clickImage(id) {
-        alert(id);
+
+        if($("#"+id).hasClass("border-primary")){
+            $("#"+id).removeClass("border-primary")
+        }else{
+            $("#"+id).addClass("border-primary");
+        }
+
+        // $("#"+id).removeClass("border-primary");
+        // alert(id);
+
+    }
+
+    function next() {
+        var imgIds=[];
+        $(".border-primary").each(function(){
+
+            imgIds.push($(this).attr('id'))
+        });
+
+        $.ajax({
+            url: "${front}/computer/finally",
+            traditional:true,
+            async: false,
+            data: {imgIds:imgIds},
+            type: "post",
+            success: function (data) {
+                window.location.href = "${front}/computer/finallyPage";
+            }
+        });
     }
 </script>
 </html>
