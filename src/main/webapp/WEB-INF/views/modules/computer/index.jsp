@@ -7,13 +7,18 @@
     <link rel="stylesheet" href="${ctxStatic}/bootstrap4/css/bootstrap.min.css"/>
     <script src="${ctxStatic}/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
     <script src="${ctxStatic}/bootstrap4/js/bootstrap.min.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function() {
+            $("#form").validate();
+        });
+    </script>
 </head>
 <body>
 <div class="container">
     <div style="height: 500px;background-color: #0ab1cb">
         <div style="text-align: right">
             <a href="${pageContext.request.contextPath}${fns:getFrontPath()}/ali" class="btn btn-secondary">首页</a>
-            <button type="button" class="btn btn-secondary">背后的故事</button>
+            <a href="${pageContext.request.contextPath}${fns:getFrontPath()}/computer/blog" class="btn btn-secondary">背后的故事</a>
             <button type="button" class="btn btn-secondary">联系我们</button>
         </div>
         <div style="text-align: center;margin-top: 100px;color: white">
@@ -27,10 +32,10 @@
         <div class="row m-5">
             <div class="col-4"></div>
             <div class="col-4">
-                <form class="form-inline" action="${front}/computer/second">
+                <form id="form" class="form-inline" action="${front}/computer/second">
                     <div class="form-group mx-sm-3 mb-2">
                         <label for="inputPassword2" class="sr-only">请输入最高预算</label>
-                        <input type="text" name="money" class="form-control" id="inputPassword2" placeholder="请输入最高预算">
+                        <input required type="number" name="money" class="form-control" id="inputPassword2" placeholder="请输入最高预算">
                     </div>
                     <button type="submit" class="btn btn-primary mb-2">下一步</button>
                 </form>

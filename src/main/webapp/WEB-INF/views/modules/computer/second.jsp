@@ -8,6 +8,21 @@
     <link rel="stylesheet" href="${ctxStatic}/bootstrap4/css/bootstrap.min.css"/>
     <script src="${ctxStatic}/jquery/jquery-3.5.0.min.js" type="text/javascript"></script>
     <script src="${ctxStatic}/bootstrap4/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${ctxStatic}/jquery-validation/1.11.1/jquery.validate.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function() {
+            $("#form").validate({
+                rules: {
+                    play: {required: true},
+                },
+                messages: {
+                    play: "请选择"
+                },
+            });
+
+
+        });
+    </script>
 </head>
 <body>
 <div class="container">
@@ -20,7 +35,7 @@
         <div class="p-5" style="margin-top: 50px;color: white;">
             <h1>选择娱乐属性</h1>
         </div>
-        <form action="${front}/computer/third">
+        <form id="form" action="${front}/computer/third">
             <input name="money" value="${money}" hidden/>
             <div class="row">
                 <div class="col-4"></div>
@@ -31,9 +46,10 @@
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 小小的娱乐需求
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" name="play" value="1" class="custom-control-input" id="customCheck1">
+                                    <input name="play" value="1" type="checkbox" class="custom-control-input" id="customCheck1">
                                     <label class="custom-control-label" for="customCheck1"></label>
                                 </div>
+
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 小小的游戏需求
@@ -41,6 +57,7 @@
                                     <input type="checkbox" name="play" value="2" class="custom-control-input" id="customCheck2">
                                     <label class="custom-control-label" for="customCheck2"></label>
                                 </div>
+
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 很高的游戏需求
@@ -48,6 +65,7 @@
                                     <input type="checkbox" name="play" value="3" class="custom-control-input" id="customCheck3">
                                     <label class="custom-control-label" for="customCheck3"></label>
                                 </div>
+
                             </li>
                         </ul>
                     </div>
@@ -105,5 +123,10 @@
         </div>
     </div>
 </div>
+<script>
+    $("input[name='play']").click(function () {
+        $("input[name='play']").not(this).prop("checked", false)
+    });
+</script>
 </body>
 </html>
